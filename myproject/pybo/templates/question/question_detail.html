@@ -1,3 +1,6 @@
+<!--<link rel = "stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+{% extends 'base.html' %}
+{% block content %}
 <h1>{{ question.subject }}</h1>
 <div>
     {{ question.content }}
@@ -6,10 +9,11 @@
 <div>
     <ul>
     {% for answer in question.answer_set %}
-        <li>{{ answer.content }}</li>
+        <li>{{ answer.content|datetime }}</li>
     {% endfor %}
     </ul>
 </div>
+{% endblock %}
 <form action="{{ url_for('answer.create', question_id=question.id) }}" method="post">
     <textarea name="content" id="content" rows="15"></textarea>
     <input type="submit" value="답변등록">
